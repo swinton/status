@@ -37,7 +37,7 @@ function create_role() {
     opts+=("--description"); opts+=("Lambda execution role")
 
     # Create the role
-    aws iam create-role ${opts[@]}
+    aws iam create-role "${opts[@]}" > /dev/null
 
     # Role policy options
     opts=()
@@ -45,7 +45,7 @@ function create_role() {
     opts+=("--policy-arn"); opts+=("arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole")
 
     # Attach role policy
-    aws iam attach-role-policy ${opts[@]}
+    aws iam attach-role-policy "${opts[@]}" > /dev/null
 }
 
 function main() {
@@ -60,12 +60,6 @@ function main() {
         echo "Creating lambda-default role..."
         create_role "lambda-default"
     fi
-
-    # Build the Lambda package
-    script/pack_lambda .
-
-    # Deploy the Lambda package
-    script/push_lambda status package.zip
 }
 
 main "$@"

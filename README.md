@@ -30,6 +30,8 @@ Once configured, you should see `config` and `credentials` files in `~/.aws`.
 
 ```bash
 script/bootstrap
+script/pack_lambda .
+script/push_lambda status package.zip
 ```
 
 This will:
