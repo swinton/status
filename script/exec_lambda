@@ -33,7 +33,7 @@ function main() {
     dest=$( mktemp )
 
     # Invoke function, passing all options
-    aws lambda invoke ${opts[@]} "${dest}" >/dev/null
+    aws lambda invoke "${opts[@]}" "${dest}" >/dev/null
 
     # Read output to stdout
     cat "${dest}" >/dev/stdout
